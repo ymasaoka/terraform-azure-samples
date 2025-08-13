@@ -98,6 +98,6 @@ policy_parameters_deployments_permission_model_aoai = <<PARAMETERS
 }
 PARAMETERS
 
-policy_name_guardrails = "guardrail-common"
+policy_definition_name_guardrails = "guardrail-common"
 policy_definition_display_name_guardrails = "Guardrail"
 policy_definition_description_guardrails = "A collection of policies applied as guardrails."
