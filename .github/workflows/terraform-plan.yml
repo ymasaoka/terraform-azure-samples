@@ -60,6 +60,7 @@ jobs:
             -backend-config="envs/${{ env.TARGET_ENVIRONMENT }}/backend.config"
 
       - name: 'Run Terraform Plan'
+        timeout-minutes: 10
         run: |
           terraform plan \
             -var-file="envs/${{ env.TARGET_ENVIRONMENT }}/terraform.tfvars"
