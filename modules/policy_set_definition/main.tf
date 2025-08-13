@@ -4,8 +4,11 @@ resource "azurerm_policy_set_definition" "this" {
   policy_type                 = var.policy_type
   name                        = var.name
   display_name                = var.display_name
-  policy_definition_reference {
-    policy_definition_id      = var.policy_definition_reference["policy_definition_id"]
+  dynamic "policy_definition_reference" {
+    for_each = var.policy_definition_reference
+    content {
+      policy_definition_id = policy_definition_reference.value["policy_definition_id"]
+    }
   }
   # Optional
   # description                 = var.description

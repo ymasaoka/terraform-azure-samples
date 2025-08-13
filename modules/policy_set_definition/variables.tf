@@ -14,7 +14,7 @@ variable "display_name" {
 }
 
 variable "policy_definition_reference" {
-  type = object({
+  type = list(object({
     # Required
     policy_definition_id = string
     # Optional
@@ -22,7 +22,7 @@ variable "policy_definition_reference" {
     # policy_group_names = list(string)
     # reference_id = string
     # version = string
-  })
+  }))
   description = "The reference ID of the policy definition."
 }
 

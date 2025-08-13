@@ -88,13 +88,14 @@ POLICY_RULE
 policy_parameters_deployments_permission_model_aoai = <<PARAMETERS
 {
   "effect": {
-  "type": "String",
-  "allowedValues": [
-    "Audit",
-    "Deny",
-    "Disabled"
-  ],
-  "defaultValue": "Deny"
+    "type": "String",
+    "allowedValues": [
+      "Audit",
+      "Deny",
+      "Disabled"
+    ],
+    "defaultValue": "Deny"
+  }
 }
 PARAMETERS
 
