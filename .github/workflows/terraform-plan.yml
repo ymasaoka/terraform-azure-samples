@@ -62,7 +62,4 @@ jobs:
       - name: 'Run Terraform Plan'
         run: |
           terraform plan \
-            -var-file="envs/${{ env.TARGET_ENVIRONMENT }}/terraform.tfvars" \
-            -var="smartdb_automation_binder_token=${{ secrets.RICT_SMARTDB_BINDER_TOKEN_RAZURE }}" \
-            -var="smartdb_automation_deployment_principal_id=${{ secrets.AZURE_CLIENT_ID }}" \
-            -var="smartdb_automation_tenant_id=${{ secrets.AZURE_TENANT_ID }}"
+            -var-file="envs/${{ env.TARGET_ENVIRONMENT }}/terraform.tfvars"
