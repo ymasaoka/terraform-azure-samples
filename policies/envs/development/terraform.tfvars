@@ -39,7 +39,8 @@ policy_parameters_deployments_region = <<PARAMETERS
       "Audit",
       "Deny",
       "Disabled"
-    ]
+    ],
+    "defaultValue": "Deny"
   }
 }
 PARAMETERS
