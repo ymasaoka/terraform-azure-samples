@@ -61,9 +61,3 @@ variable "policy_definition_display_name_guardrails" {
 variable "policy_definition_description_guardrails" {
   type        = string
 }
-
-variable "policy_definition_reference_guardrails" {
-  type        = list(object({
-    policy_definition_id = string
-  }))
-}
