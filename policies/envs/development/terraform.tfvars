@@ -99,6 +99,9 @@ policy_parameters_deployments_permission_model_aoai = <<PARAMETERS
 }
 PARAMETERS
 
-policy_definition_name_guardrails = "guardrail-common"
-policy_definition_display_name_guardrails = "Guardrail"
-policy_definition_description_guardrails = "A collection of policies applied as guardrails."
+policy_definition_name_guardrail = "guardrail-common"
+policy_definition_display_name_guardrail = "Guardrail"
+policy_definition_description_guardrail = "A collection of policies applied as guardrails."
+
+management_group_policy_assignment_name_guardrail = "guardrail-assignment-mg-landing-zones"
+management_group_id_guardrail = "/providers/Microsoft.Management/managementGroups/landing-zones"
