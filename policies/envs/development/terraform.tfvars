@@ -1,5 +1,5 @@
 management_group_policy_assignment_name_guardrail = "guardrail-landing-zones"
-management_group_id_guardrail = "landing-zones"
+management_group_id_guardrail = "/providers/Microsoft.Management/managementGroups/landing-zones"
 
 policy_type = "Custom"
 policy_name_deployments_region = "do-not-allow-deployments-outside-the-permitted-regions"
