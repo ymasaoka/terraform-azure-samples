@@ -30,15 +30,27 @@ output "policy_deployments_permission_model_aoai_id" {
   value = module.policy_deployments_permission_model_aoai.id
 }
 
-module "policy_set_definition_guardrails" {
+module "policy_set_definition_guardrail" {
   source = "../modules/policy_set_definition"
 
   policy_type                 = var.policy_type
-  name                        = var.policy_definition_name_guardrails
-  display_name                = var.policy_definition_display_name_guardrails
-  description                 = var.policy_definition_description_guardrails
+  name                        = var.policy_definition_name_guardrail
+  display_name                = var.policy_definition_display_name_guardrail
+  description                 = var.policy_definition_description_guardrail
   policy_definition_reference = [
     { policy_definition_id    = module.policy_deployments_region.id },
     { policy_definition_id    = module.policy_deployments_permission_model_aoai.id }
   ]
+}
+
+output "policy_set_definition_guardrail_id" {
+  value = module.policy_set_definition_guardrail.id
+}
+
+module "management_group_policy_assignment_guardrail" {
+  source                = "../modules/management_group_policy_assignment"
+
+  name                  = var.management_group_policy_assignment_name_guardrail
+  management_group_id   = var.management_group_id_guardrail
+  policy_definition_id  = module.policy_set_definition_guardrail.id
 }
