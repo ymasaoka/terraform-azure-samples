@@ -8,6 +8,7 @@ module "policy_deployments_region" {
   description         = var.policy_description_deployments_region
   policy_rule         = var.policy_rule_deployments_region
   parameters          = var.policy_parameters_deployments_region
+  management_group_id = var.management_group_id_guardrail
 }
 
 output "policy_deployments_region_id" {
@@ -24,18 +25,20 @@ module "policy_deployments_permission_model_aoai" {
   description         = var.policy_description_deployments_permission_model_aoai
   policy_rule         = var.policy_rule_deployments_permission_model_aoai
   parameters          = var.policy_parameters_deployments_permission_model_aoai
+  management_group_id = var.management_group_id_guardrail
 }
 
 output "policy_deployments_permission_model_aoai_id" {
   value = module.policy_deployments_permission_model_aoai.id
 }
 
-module "policy_set_definition_guardrail" {
-  source = "../modules/policy_set_definition"
+module "management_group_policy_set_definition_guardrail" {
+  source = "../modules/management_group_policy_set_definition"
 
   policy_type                 = var.policy_type
   name                        = var.policy_definition_name_guardrail
   display_name                = var.policy_definition_display_name_guardrail
+  management_group_id         = var.management_group_id_guardrail
   description                 = var.policy_definition_description_guardrail
   policy_definition_reference = [
     { policy_definition_id    = module.policy_deployments_region.id },
@@ -43,8 +46,8 @@ module "policy_set_definition_guardrail" {
   ]
 }
 
-output "policy_set_definition_guardrail_id" {
-  value = module.policy_set_definition_guardrail.id
+output "management_group_policy_set_definition_guardrail_id" {
+  value = module.management_group_policy_set_definition_guardrail.id
 }
 
 module "management_group_policy_assignment_guardrail" {
@@ -52,5 +55,5 @@ module "management_group_policy_assignment_guardrail" {
 
   name                  = var.management_group_policy_assignment_name_guardrail
   management_group_id   = var.management_group_id_guardrail
-  policy_definition_id  = module.policy_set_definition_guardrail.id
+  policy_definition_id  = module.management_group_policy_set_definition_guardrail.id
 }
