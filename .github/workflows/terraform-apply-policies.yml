@@ -55,6 +55,7 @@ jobs:
             -backend-config="envs/${{ env.TARGET_ENVIRONMENT }}/backend.config"
 
       - name: 'Run Terraform Apply'
+        timeout-minutes: 10
         run: |
           terraform apply \
             -var-file="envs/${{ env.TARGET_ENVIRONMENT }}/terraform.tfvars"
