@@ -8,6 +8,7 @@ module "policy_deployments_region" {
   description         = var.policy_description_deployments_region
   policy_rule         = var.policy_rule_deployments_region
   parameters          = var.policy_parameters_deployments_region
+  management_group_id = var.management_group_id_guardrail
 }
 
 output "policy_deployments_region_id" {
@@ -24,6 +25,7 @@ module "policy_deployments_permission_model_aoai" {
   description         = var.policy_description_deployments_permission_model_aoai
   policy_rule         = var.policy_rule_deployments_permission_model_aoai
   parameters          = var.policy_parameters_deployments_permission_model_aoai
+  management_group_id = var.management_group_id_guardrail
 }
 
 output "policy_deployments_permission_model_aoai_id" {
