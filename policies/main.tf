@@ -46,8 +46,8 @@ module "management_group_policy_set_definition_guardrail" {
   ]
 }
 
-output "policy_set_definition_guardrail_id" {
-  value = module.policy_set_definition_guardrail.id
+output "management_group_policy_set_definition_guardrail_id" {
+  value = module.management_group_policy_set_definition_guardrail.id
 }
 
 module "management_group_policy_assignment_guardrail" {
