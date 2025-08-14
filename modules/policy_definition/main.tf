@@ -7,7 +7,7 @@ resource "azurerm_policy_definition" "this" {
   mode                = var.mode
   # Optional
   description         = var.description
-  # management_group_id = var.management_group_id
+  management_group_id = var.management_group_id
   policy_rule         = var.policy_rule
   # metadata            = var.metadata
   parameters          = var.parameters
