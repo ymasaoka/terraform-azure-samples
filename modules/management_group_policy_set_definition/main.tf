@@ -1,9 +1,10 @@
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_set_definition
-resource "azurerm_policy_set_definition" "this" {
+resource "azurerm_management_group_policy_set_definition" "this" {
   # Required
   policy_type                 = var.policy_type
   name                        = var.name
   display_name                = var.display_name
+  management_group_id         = var.management_group_id
   dynamic "policy_definition_reference" {
     for_each = var.policy_definition_reference
     content {

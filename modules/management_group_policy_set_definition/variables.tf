@@ -13,6 +13,11 @@ variable "display_name" {
   description = "The display name of the policy definition."
 }
 
+variable "management_group_id" {
+  type = string
+  description = "The ID of the management group where the policy set definition will be created."
+}
+
 variable "policy_definition_reference" {
   type = list(object({
     # Required
