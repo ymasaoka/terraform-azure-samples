@@ -52,5 +52,5 @@ module "management_group_policy_assignment_guardrail" {
 
   name                  = var.management_group_policy_assignment_name_guardrail
   management_group_id   = var.management_group_id_guardrail
-  policy_definition_id  = module.policy_set_definition_guardrails.id
+  policy_definition_id  = module.policy_set_definition_guardrail.id
 }
