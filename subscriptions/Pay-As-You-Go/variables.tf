@@ -149,6 +149,12 @@ variable "function_app_setting_names" {
 }
 
 # From Actions
+variable "azure_deployment_principal_id" {
+  description = "The principal ID of the Azure deployment"
+  type        = string
+  default     = ""
+}
+
 variable "function_app_settings_additional" {
   description = "Additional application settings for the Function App"
   type        = string

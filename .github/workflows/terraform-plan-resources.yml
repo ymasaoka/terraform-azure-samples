@@ -62,4 +62,5 @@ jobs:
         run: |
           terraform plan \
             -var-file="envs/${{ env.TARGET_ENVIRONMENT }}/terraform.tfvars" \
+            -var="azure_deployment_principal_id=${{ secrets.AZURE_CLIENT_ID }}" \
             -var="function_app_settings_additional=${{ env.TARGET_ENVIRONMENT }}"

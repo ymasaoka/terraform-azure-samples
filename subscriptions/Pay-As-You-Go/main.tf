@@ -178,3 +178,36 @@ module "function_app_flex_consumption_sample" {
     "hidden-link: /app-insights-resource-id" = module.application_insights_function.id
   }
 }
+
+output "function_app_flex_consumption_id" {
+  value = module.function_app_flex_consumption_sample.id
+}
+
+output "function_app_flex_consumption_system_assigned_managed_identity_principal_id" {
+  value = module.function_app_flex_consumption_sample.system_assigned_managed_identity_principal_id
+}
+
+### Sample: Azure RBAC - Managed identities for Function App
+module "role_assignment_storage_blob_data_contributor_function_app" {
+  source                = "../../modules/role_assignment"
+  scope                 = module.storage_container_function_app_packages.id
+  role_definition_name  = "Storage Blob Data Contributor"
+  principal_id          = module.function_app_flex_consumption_sample.system_assigned_managed_identity_principal_id
+  principal_type        = "ServicePrincipal"
+}
+
+module "role_assignment_monitoring_metrics_publisher_function_app" {
+  source                = "../../modules/role_assignment"
+  scope                 = module.application_insights_function.id
+  role_definition_name  = "Monitoring Metrics Publisher"
+  principal_id          = module.function_app_flex_consumption_sample.system_assigned_managed_identity_principal_id
+  principal_type        = "ServicePrincipal"
+}
+
+module "role_assignment_website_contributor_function_app" {
+  source                = "../../modules/role_assignment"
+  scope                 = module.function_app_flex_consumption_sample.id
+  role_definition_name  = "Website Contributor"
+  principal_id          = var.azure_deployment_principal_id
+  principal_type        = "ServicePrincipal"
+}
