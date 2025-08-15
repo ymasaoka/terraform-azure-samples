@@ -99,9 +99,6 @@ module "storage_container_function_hosts" {
   storage_account_id    = module.storage_account_function.id
   container_access_type = var.function_storage_container_access_type
   storage_account_name  = module.storage_account_function.name
-  depends_on = [
-    module.storage_account_function
-  ]
 }
 
 module "storage_container_function_secrets" {
@@ -110,9 +107,6 @@ module "storage_container_function_secrets" {
   storage_account_id    = module.storage_account_function.id
   container_access_type = var.function_storage_container_access_type
   storage_account_name  = module.storage_account_function.name
-  depends_on = [
-    module.storage_account_function
-  ]
 }
 
 module "storage_container_function_app_packages" {
@@ -121,9 +115,6 @@ module "storage_container_function_app_packages" {
   storage_account_id    = module.storage_account_function.id
   container_access_type = var.function_storage_container_access_type
   storage_account_name  = module.storage_account_function.name
-  depends_on = [
-    module.storage_account_function
-  ]
 }
 
 output "storage_container_function_app_packages_id" {
@@ -186,11 +177,4 @@ module "function_app_flex_consumption_sample" {
   tags = {
     "hidden-link: /app-insights-resource-id" = module.application_insights_function.id
   }
-  depends_on = [
-    module.resource_group_function,
-    module.application_insights_function,
-    module.storage_container_function_app_packages,
-    module.service_plan_function,
-    local.app_settings
-  ]
 }
