@@ -109,7 +109,7 @@ module "storage_container_function_app_packages" {
 }
 
 output "storage_container_function_app_packages_id" {
-  value = module.storage_container_function_app_packages.storage_container_id
+  value = module.storage_container_function_app_packages.id
 }
 
 output "storage_container_function_app_packages_endpoint" {
