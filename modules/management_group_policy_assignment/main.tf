@@ -1,3 +1,4 @@
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_assignment
 resource "azurerm_management_group_policy_assignment" "this" {
   # Required
   name                             = var.name

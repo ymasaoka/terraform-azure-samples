@@ -1,12 +1,12 @@
-name: 'Terraform Plan for Azure Policies'
+name: 'Terraform Apply for Azure Resources: Pay-As-You-Go'
 
 on:
-  pull_request:
+  push:
     branches:
       - main
       - develop
     paths:
-      - 'policies/**'
+      - 'subscriptions/Pay-As-You-Go/**'
   workflow_dispatch:
     inputs:
       TARGET_ENVIRONMENT:
@@ -23,7 +23,7 @@ permissions:
   contents: read
 
 jobs:
-  terraform-plan:
+  terraform-apply:
     runs-on: ubuntu-latest
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -35,7 +35,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./policies
+        working-directory: ./subscriptions/Pay-As-You-Go
 
     steps:
       - name: 'Checkout repository'
@@ -59,7 +59,16 @@ jobs:
             -backend-config="envs/${{ env.TARGET_ENVIRONMENT }}/backend.config"
 
       - name: 'Run Terraform Plan'
-        timeout-minutes: 10
         run: |
           terraform plan \
-            -var-file="envs/${{ env.TARGET_ENVIRONMENT }}/terraform.tfvars"
+            -var-file="envs/${{ env.TARGET_ENVIRONMENT }}/terraform.tfvars" \
+            -var="azure_deployment_principal_id=${{ secrets.AZURE_CLIENT_ID }}" \
+            -var="function_app_settings_additional=${{ env.TARGET_ENVIRONMENT }}"
+
+      - name: 'Run Terraform Apply'
+        run: |
+          terraform apply \
+            -auto-approve \
+            -var-file="envs/${{ env.TARGET_ENVIRONMENT }}/terraform.tfvars" \
+            -var="azure_deployment_principal_id=${{ secrets.AZURE_CLIENT_ID }}" \
+            -var="function_app_settings_additional=${{ env.TARGET_ENVIRONMENT }}"
