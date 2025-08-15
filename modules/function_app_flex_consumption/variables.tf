@@ -144,7 +144,7 @@ variable "site_config_remote_debugging_enabled" {
 variable "site_config_remote_debugging_version" {
   description = "The version of the remote debugging for the function app."
   type        = string
-  default     = "latest"
+  default     = "VS2022"
 }
 
 variable "site_config_runtime_scale_monitoring_enabled" {
@@ -187,7 +187,7 @@ variable "site_config_worker_count" {
 variable "cors_allowed_origins" {
   description = "A list of allowed origins for CORS."
   type        = list(string)
-  default     = []
+  default     = ["https://portal.azure.com"]
 }
 
 variable "cors_support_credentials" {
