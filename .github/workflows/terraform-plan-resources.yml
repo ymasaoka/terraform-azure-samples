@@ -1,4 +1,4 @@
-name: 'Terraform Plan for Azure Policies'
+name: 'Terraform Plan for Azure Resources: Pay-As-You-Go'
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - main
       - develop
     paths:
-      - 'policies/**'
+      - 'subscriptions/Pay-As-You-Go/**'
   workflow_dispatch:
     inputs:
       TARGET_ENVIRONMENT:
@@ -35,7 +35,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./policies
+        working-directory: ./subscriptions/Pay-As-You-Go
 
     steps:
       - name: 'Checkout repository'
@@ -59,7 +59,7 @@ jobs:
             -backend-config="envs/${{ env.TARGET_ENVIRONMENT }}/backend.config"
 
       - name: 'Run Terraform Plan'
-        timeout-minutes: 10
         run: |
           terraform plan \
             -var-file="envs/${{ env.TARGET_ENVIRONMENT }}/terraform.tfvars"
+            -var="function_app_settings_additional=${{ env.TARGET_ENVIRONMENT }}"
