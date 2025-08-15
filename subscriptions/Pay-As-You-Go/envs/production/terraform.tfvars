@@ -35,7 +35,7 @@ function_app_settings = {
   APPLICATIONINSIGHTS_AUTHENTICATION_STRING = "Authorization=AAD"
   AzureWebJobsStorage__credential = "managedidentity"
 }
-function_name = "sample-function-powershell"
+function_name = "sample-function-powershell-prd"
 function_storage_container_type = "blobContainer"
 function_storage_authentication_type = "SystemAssignedIdentity"
 function_runtime_name = "powershell"
