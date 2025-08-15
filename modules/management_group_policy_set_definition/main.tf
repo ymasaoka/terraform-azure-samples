@@ -1,4 +1,4 @@
-# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/policy_set_definition
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_group_policy_set_definition
 resource "azurerm_management_group_policy_set_definition" "this" {
   # Required
   policy_type                 = var.policy_type
