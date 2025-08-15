@@ -13,3 +13,8 @@ variable "container_access_type" {
   type        = string
   default     = "private"
 }
+
+variable "storage_account_name" {
+  description = "The name of the storage account where the container will be created"
+  type        = string
+}

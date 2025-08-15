@@ -61,5 +61,5 @@ jobs:
       - name: 'Run Terraform Plan'
         run: |
           terraform plan \
-            -var-file="envs/${{ env.TARGET_ENVIRONMENT }}/terraform.tfvars"
+            -var-file="envs/${{ env.TARGET_ENVIRONMENT }}/terraform.tfvars" \
             -var="function_app_settings_additional=${{ env.TARGET_ENVIRONMENT }}"

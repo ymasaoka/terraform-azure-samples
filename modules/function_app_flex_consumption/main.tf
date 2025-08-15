@@ -9,7 +9,7 @@ resource "azurerm_function_app_flex_consumption" "this" {
   storage_container_endpoint                      = var.storage_container_endpoint
   storage_authentication_type                     = var.storage_authentication_type
   runtime_name                                    = var.runtime_name
-  runtime_version                                 = var.runtime_name
+  runtime_version                                 = var.runtime_version
   site_config {
     application_insights_connection_string        = var.site_config_application_insights_connection_string
     application_insights_key                      = var.site_config_application_insights_key

@@ -68,6 +68,10 @@ output "storage_account_function_id" {
   value = module.storage_account_function.id
 }
 
+output "storage_account_function_name" {
+  value = module.storage_account_function.name
+}
+
 output "storage_account_function_primary_blob_endpoint" {
   value = module.storage_account_function.primary_blob_endpoint
 }
@@ -85,6 +89,7 @@ module "storage_container_function_hosts" {
   name                  = var.function_storage_container_hosts_name
   storage_account_id    = module.storage_account_function.id
   container_access_type = var.function_storage_container_access_type
+  storage_account_name  = module.storage_account_function.name
 }
 
 module "storage_container_function_secrets" {
@@ -92,6 +97,7 @@ module "storage_container_function_secrets" {
   name                  = var.function_storage_container_secrets_name
   storage_account_id    = module.storage_account_function.id
   container_access_type = var.function_storage_container_access_type
+  storage_account_name  = module.storage_account_function.name
 }
 
 module "storage_container_function_app_packages" {
@@ -99,6 +105,7 @@ module "storage_container_function_app_packages" {
   name                  = var.function_storage_container_app_packages_name
   storage_account_id    = module.storage_account_function.id
   container_access_type = var.function_storage_container_access_type
+  storage_account_name  = module.storage_account_function.name
 }
 
 output "storage_container_function_app_packages_id" {
@@ -133,7 +140,6 @@ locals {
     }
   )
 }
-
 
 module "function_app_flex_consumption_sample" {
   source                      = "../../modules/function_app_flex_consumption"
