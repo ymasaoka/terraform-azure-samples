@@ -11,6 +11,9 @@ module "log_analytics_workspace" {
   resource_group_name          = var.log_rg_name
   location                     = var.log_rg_location
   local_authentication_enabled = var.log_local_authentication_enabled
+  depends_on = [
+    module.resource_group_log
+  ]
 }
 
 output "log_analytics_workspace_id" {
@@ -33,6 +36,9 @@ module "application_insights_function" {
   sampling_percentage           = var.function_app_insights_sampling_percentage
   workspace_id                  = module.log_analytics_workspace.id
   local_authentication_disabled = var.function_app_insights_local_authentication_enabled
+  depends_on = [
+    module.resource_group_function
+  ]
 }
 
 output "application_insights_function_id" {
@@ -62,6 +68,9 @@ module "storage_account_function" {
   allow_nested_items_to_be_public = var.function_storage_account_allow_nested_items_to_be_public
   public_network_access_enabled   = var.function_storage_account_public_network_access_enabled
   default_to_oauth_authentication = var.function_storage_account_default_to_oauth_authentication
+  depends_on = [
+    module.resource_group_function
+  ]
 }
 
 output "storage_account_function_id" {
@@ -123,6 +132,9 @@ module "service_plan_function" {
   os_type             = var.function_service_plan_os_type
   resource_group_name = var.function_rg_name
   sku_name            = var.function_service_plan_sku_name
+  depends_on = [
+    module.resource_group_function
+  ]
 }
 
 output "service_plan_function_id" {
