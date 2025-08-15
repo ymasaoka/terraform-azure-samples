@@ -39,6 +39,7 @@ function_name = "sample-function-powershell"
 function_storage_container_type = "blobContainer"
 function_storage_authentication_type = "SystemAssignedIdentity"
 function_runtime_name = "powershell"
+function_runtime_version = "7.4"
 function_identity_type = "SystemAssigned"
 function_app_setting_names = [
   "APPINSIGHTS_INSTRUMENTATIONKEY",
