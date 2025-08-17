@@ -6,7 +6,7 @@ on:
       - main
       - develop
     paths:
-      - 'subscriptions/Pay-As-You-Go/**'
+      - 'resources/infra/**'
   workflow_dispatch:
     inputs:
       TARGET_ENVIRONMENT:
