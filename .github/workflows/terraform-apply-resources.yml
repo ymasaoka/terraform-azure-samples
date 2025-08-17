@@ -6,7 +6,7 @@ on:
       - main
       - develop
     paths:
-      - 'subscriptions/Pay-As-You-Go/**'
+      - 'resources/infra/**'
   workflow_dispatch:
     inputs:
       TARGET_ENVIRONMENT:
@@ -35,7 +35,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./subscriptions/Pay-As-You-Go
+        working-directory: ./resources/infra
 
     steps:
       - name: 'Checkout repository'
