@@ -5,15 +5,20 @@ module "resource_group_log" {
   location   = var.log_rg_location
 }
 
+output "resource_group_log_name" {
+  value = module.resource_group_log.name
+}
+
+output "resource_group_log_location" {
+  value = module.resource_group_log.location
+}
+
 module "log_analytics_workspace" {
   source                       = "../../modules/log_analytics_workspace"
   name                         = var.log_analytics_workspace_name
-  resource_group_name          = var.log_rg_name
-  location                     = var.log_rg_location
+  resource_group_name          = module.resource_group_log.name
+  location                     = module.resource_group_log.location
   local_authentication_enabled = var.log_local_authentication_enabled
-  depends_on = [
-    module.resource_group_log
-  ]
 }
 
 output "log_analytics_workspace_id" {
@@ -27,18 +32,23 @@ module "resource_group_function" {
   location = var.function_rg_location
 }
 
+output "resource_group_function_name" {
+  value = module.resource_group_function.name
+}
+
+output "resource_group_function_location" {
+  value = module.resource_group_function.location
+}
+
 module "application_insights_function" {
   source                        = "../../modules/application_insights"
   name                          = var.function_app_insights_name
-  resource_group_name           = var.function_rg_name
-  location                      = var.function_rg_location
+  resource_group_name           = module.resource_group_function.name
+  location                      = module.resource_group_function.location
   application_type              = var.function_app_insights_app_type
   sampling_percentage           = var.function_app_insights_sampling_percentage
   workspace_id                  = module.log_analytics_workspace.id
   local_authentication_disabled = var.function_app_insights_local_authentication_enabled
-  depends_on = [
-    module.resource_group_function
-  ]
 }
 
 output "application_insights_function_id" {
@@ -58,8 +68,8 @@ output "application_insights_function_instrumentation_key" {
 module "storage_account_function" {
   source                          = "../../modules/storage_account"
   name                            = var.function_storage_account_name
-  resource_group_name             = var.function_rg_name
-  location                        = var.function_rg_location
+  resource_group_name             = module.resource_group_function.name
+  location                        = module.resource_group_function.location
   account_tier                    = var.function_storage_account_tier
   account_replication_type        = var.function_storage_account_replication_type
   account_kind                    = var.function_storage_account_kind
@@ -68,9 +78,6 @@ module "storage_account_function" {
   allow_nested_items_to_be_public = var.function_storage_account_allow_nested_items_to_be_public
   public_network_access_enabled   = var.function_storage_account_public_network_access_enabled
   default_to_oauth_authentication = var.function_storage_account_default_to_oauth_authentication
-  depends_on = [
-    module.resource_group_function
-  ]
 }
 
 output "storage_account_function_id" {
@@ -128,13 +135,10 @@ output "storage_container_function_app_packages_endpoint" {
 module "service_plan_function" {
   source              = "../../modules/service_plan"
   name                = var.function_service_plan_name
-  location            = var.function_rg_location
+  location            = module.resource_group_function.location
   os_type             = var.function_service_plan_os_type
-  resource_group_name = var.function_rg_name
+  resource_group_name = module.resource_group_function.name
   sku_name            = var.function_service_plan_sku_name
-  depends_on = [
-    module.resource_group_function
-  ]
 }
 
 output "service_plan_function_id" {
@@ -155,9 +159,9 @@ locals {
 
 module "function_app_flex_consumption_sample" {
   source                      = "../../modules/function_app_flex_consumption"
-  location                    = var.function_rg_location
+  location                    = module.resource_group_function.location
   name                        = var.function_name
-  resource_group_name         = var.function_rg_name
+  resource_group_name         = module.resource_group_function.name
   service_plan_id             = module.service_plan_function.id
   storage_container_type      = var.function_storage_container_type
   storage_container_endpoint  = module.storage_container_function_app_packages.storage_container_endpoint
