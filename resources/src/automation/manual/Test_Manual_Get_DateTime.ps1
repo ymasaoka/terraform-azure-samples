@@ -5,7 +5,7 @@
     This runbook demonstrates how to get the current date and time using PowerShell in an Azure Automation environment.
 #>
 
-$sampleString = Get-EnviromentValiable -Name "Sample_Variable_String"
+$sampleString = Get-AutomationVariable -Name "Sample_Variable_String"
 Write-Output "Sample String: $sampleString"
 
 $dateTimeNow = Get-Date
