@@ -13,7 +13,12 @@ updates:
     target-branch: "develop"
   # Enable version updates for Terraform
   - package-ecosystem: "terraform"
-    directory: "/infra"
+    directory: "/policies"
+    schedule:
+      interval: "weekly"
+    target-branch: "develop"
+  - package-ecosystem: "terraform"
+    directory: "/resources/infra"
     schedule:
       interval: "weekly"
     target-branch: "develop"
