@@ -15,6 +15,82 @@ variable "log_local_authentication_enabled" {
   default = true
 }
 
+variable "automation_rg_name" {
+  type = string
+}
+
+variable "automation_rg_location" {
+  type = string
+}
+
+variable "automation_account_name" {
+  type = string
+}
+
+variable "automation_account_sku_name" {
+  type = string
+}
+
+variable "automation_account_local_authentication_enabled" {
+  type    = bool
+  default = false
+}
+
+variable "automation_account_public_network_access_enabled" {
+  type    = bool
+  default = true
+}
+
+variable "automation_account_identity_type" {
+  type    = string
+  default = "SystemAssigned"
+}
+
+variable "automation_variable_string_sample_name" {
+  type        = string
+}
+
+variable "automation_variable_string_sample_description" {
+  type = string
+}
+
+variable "automation_variable_string_sample_encrypted" {
+  type    = bool
+  default = false
+}
+
+variable "automation_variable_string_sample_value" {
+  type        = string
+}
+
+variable "automation_runbook_type_powershell72" {
+  type    = string
+  default = "PowerShell72"
+}
+
+variable "automation_runbook_log_progress_false" {
+  type    = bool
+  default = false
+}
+
+variable "automation_runbook_log_verbose_false" {
+  type    = bool
+  default = false
+}
+
+variable "automation_runbook_log_activity_trace_level_0" {
+  type    = number
+  default = 0
+}
+
+variable "automation_runbook_sample_name" {
+  type = string
+}
+
+variable "automation_runbook_sample_description" {
+  type = string
+}
+
 variable "function_rg_name" {
   type = string
 }

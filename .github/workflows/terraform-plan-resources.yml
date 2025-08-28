@@ -33,13 +33,9 @@ jobs:
       TARGET_ENVIRONMENT: ${{ github.event_name == 'workflow_dispatch' && inputs.TARGET_ENVIRONMENT || (github.ref == 'refs/heads/main' && 'production' || 'development') }}
     environment: ${{ github.event_name == 'workflow_dispatch' && (inputs.TARGET_ENVIRONMENT == 'production' && 'Production' || 'Development') || (github.ref == 'refs/heads/main' && 'Production' || 'Development') }}
 
-    defaults:
-      run:
-        working-directory: ./resources/infra
-
     steps:
       - name: 'Checkout repository'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 'Login to Azure with Azure CLI'
         uses: azure/login@v2
@@ -57,6 +53,7 @@ jobs:
         run: |
           terraform init \
             -backend-config="envs/${{ env.TARGET_ENVIRONMENT }}/backend.config"
+        working-directory: ./resources/infra
 
       - name: 'Run Terraform Plan'
         run: |
@@ -64,3 +61,4 @@ jobs:
             -var-file="envs/${{ env.TARGET_ENVIRONMENT }}/terraform.tfvars" \
             -var="azure_deployment_principal_id=${{ secrets.AZURE_CLIENT_ID }}" \
             -var="function_app_settings_additional=${{ env.TARGET_ENVIRONMENT }}"
+        working-directory: ./resources/infra

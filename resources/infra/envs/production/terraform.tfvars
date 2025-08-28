@@ -4,6 +4,24 @@ log_rg_location = "japaneast"
 log_analytics_workspace_name = "log-platform"
 log_local_authentication_enabled = true
 
+# Azure Automation
+automation_rg_name = "sample-automation-rg"
+automation_rg_location = "japaneast"
+
+automation_account_name = "sample-automation-account"
+automation_account_sku_name = "Basic"
+automation_account_local_authentication_enabled = false
+automation_account_public_network_access_enabled = true
+automation_account_identity_type = "SystemAssigned"
+
+automation_variable_string_sample_name = "Sample_Variable_String"
+automation_variable_string_sample_description = "This is a sample variable string."
+automation_variable_string_sample_encrypted = false
+automation_variable_string_sample_value = "SampleValue"
+
+automation_runbook_sample_name = "Test_Manual_Get_DateTime"
+automation_runbook_sample_description = "This runbook retrieves the current date and time."
+
 # Azure Functions
 function_rg_name = "sample-function-rg"
 function_rg_location = "japaneast"
