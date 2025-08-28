@@ -67,7 +67,7 @@ module "automation_variable_string_sample" {
   value                   = var.automation_variable_string_sample_value
 }
 
-module "automaton_runbook_sample_manual" {
+module "automation_runbook_sample_manual" {
   source                    = "../../modules/automation_runbook"
   name                      = var.automation_runbook_sample_name
   location                  = module.resource_group_automation.location
