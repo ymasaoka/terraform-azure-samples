@@ -25,6 +25,62 @@ output "log_analytics_workspace_id" {
   value = module.log_analytics_workspace.id
 }
 
+### Sample: Main Resources - Azure Automation
+module "resource_group_automation" {
+  source   = "../../modules/resource_group"
+  name     = var.automation_rg_name
+  location = var.automation_rg_location
+}
+
+output "resource_group_automation_name" {
+  value = module.resource_group_automation.name
+}
+
+output "resource_group_automation_location" {
+  value = module.resource_group_automation.location
+}
+
+module "automation_account" {
+  source                        = "../../modules/automation_account"
+  name                          = var.automation_account_name
+  resource_group_name           = module.resource_group_automation.name
+  location                      = module.resource_group_automation.location
+  sku_name                      = var.automation_account_sku_name
+  local_authentication_enabled  = var.automation_account_local_authentication_enabled
+  public_network_access_enabled = var.automation_account_public_network_access_enabled
+  # identity
+  identity_type                 = var.automation_account_identity_type
+}
+
+output "automation_account_name" {
+  value = module.automation_account.name
+}
+
+module "automation_variable_string_sample" {
+  source                  = "../../modules/automation_variable_string"
+  name                    = var.automation_variable_string_sample_name
+  resource_group_name     = module.resource_group_automation.name
+  automation_account_name = module.automation_account.name
+  # Optional
+  description             = var.automation_variable_string_sample_description
+  encrypted               = var.automation_variable_string_encrypted_false
+  value                   = var.automation_variable_string_sample_value
+}
+
+module "automation_runbook_sample_manual" {
+  source                    = "../../modules/automation_runbook"
+  name                      = var.automation_runbook_sample_name
+  location                  = module.resource_group_automation.location
+  resource_group_name       = module.resource_group_automation.name
+  automation_account_name   = module.automation_account.name
+  runbook_type              = var.automation_runbook_type_powershell72
+  log_progress              = var.automation_runbook_log_progress_false
+  log_verbose               = var.automation_runbook_log_verbose_false
+  description               = var.automation_runbook_sample_description
+  content                   = file("${path.root}/../src/automation/manual/Test_Manual_Get_DateTime.ps1")
+  log_activity_trace_level  = var.automation_runbook_log_activity_trace_level_0
+}
+
 ### Sample: Main Resources - Azure Functions
 module "resource_group_function" {
   source   = "../../modules/resource_group"
