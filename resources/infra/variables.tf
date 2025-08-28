@@ -46,17 +46,17 @@ variable "automation_account_identity_type" {
   default = "SystemAssigned"
 }
 
+variable "automation_variable_string_encrypted_false" {
+  type    = bool
+  default = false
+}
+
 variable "automation_variable_string_sample_name" {
   type        = string
 }
 
 variable "automation_variable_string_sample_description" {
   type = string
-}
-
-variable "automation_variable_string_sample_encrypted" {
-  type    = bool
-  default = false
 }
 
 variable "automation_variable_string_sample_value" {

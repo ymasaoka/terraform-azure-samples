@@ -16,7 +16,6 @@ automation_account_identity_type = "SystemAssigned"
 
 automation_variable_string_sample_name = "Sample_Variable_String"
 automation_variable_string_sample_description = "This is a sample variable string."
-automation_variable_string_sample_encrypted = false
 automation_variable_string_sample_value = "SampleValue"
 
 automation_runbook_sample_name = "Test_Manual_Get_DateTime"

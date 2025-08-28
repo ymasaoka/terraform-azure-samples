@@ -63,7 +63,7 @@ module "automation_variable_string_sample" {
   automation_account_name = module.automation_account.name
   # Optional
   description             = var.automation_variable_string_sample_description
-  encrypted               = var.automation_variable_string_sample_encrypted
+  encrypted               = var.automation_variable_string_encrypted_false
   value                   = var.automation_variable_string_sample_value
 }
 
