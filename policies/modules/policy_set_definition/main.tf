@@ -11,9 +11,9 @@ resource "azurerm_policy_set_definition" "this" {
     }
   }
   # Optional
-  # description                 = var.description
-  # metadata                    = var.metadata
-  # parameters                  = var.parameters
+  description                 = var.description
+  metadata                    = var.metadata
+  parameters                  = var.parameters
   # policy_definition_group {
   #   name                      = var.policy_definition_group["name"]
   # }

@@ -1,0 +1,26 @@
+{
+  "if": {
+    "not": {
+      "field": "location",
+      "in": [
+        "eastus",
+        "eastus2",
+        "unitedstates",
+        "northcentralus",
+        "southcentralus",
+        "centralus",
+        "westcentralus",
+        "westus",
+        "westus2",
+        "westus3",
+        "japaneast",
+        "japan",
+        "japanwest",
+        "global"
+      ]
+    }
+  },
+  "then": {
+    "effect": "[parameters('effect')]"
+  }
+}

@@ -9,6 +9,6 @@ resource "azurerm_policy_definition" "this" {
   description         = var.description
   management_group_id = var.management_group_id
   policy_rule         = var.policy_rule
-  # metadata            = var.metadata
+  metadata            = var.metadata
   parameters          = var.parameters
 }
