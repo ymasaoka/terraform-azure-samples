@@ -1,6 +1,6 @@
 ### Sample: Logging and Monitoring
 module "resource_group_log" {
-  source     = "../../modules/resource_group"
+  source     = "./modules/resource_group"
   name       = var.log_rg_name
   location   = var.log_rg_location
 }
@@ -14,7 +14,7 @@ output "resource_group_log_location" {
 }
 
 module "log_analytics_workspace" {
-  source                       = "../../modules/log_analytics_workspace"
+  source                       = "./modules/log_analytics_workspace"
   name                         = var.log_analytics_workspace_name
   resource_group_name          = module.resource_group_log.name
   location                     = module.resource_group_log.location
@@ -27,7 +27,7 @@ output "log_analytics_workspace_id" {
 
 ### Sample: Main Resources - Azure Automation
 module "resource_group_automation" {
-  source   = "../../modules/resource_group"
+  source   = "./modules/resource_group"
   name     = var.automation_rg_name
   location = var.automation_rg_location
 }
@@ -41,7 +41,7 @@ output "resource_group_automation_location" {
 }
 
 module "automation_account" {
-  source                        = "../../modules/automation_account"
+  source                        = "./modules/automation_account"
   name                          = var.automation_account_name
   resource_group_name           = module.resource_group_automation.name
   location                      = module.resource_group_automation.location
@@ -57,7 +57,7 @@ output "automation_account_name" {
 }
 
 module "automation_variable_string_sample" {
-  source                  = "../../modules/automation_variable_string"
+  source                  = "./modules/automation_variable_string"
   name                    = var.automation_variable_string_sample_name
   resource_group_name     = module.resource_group_automation.name
   automation_account_name = module.automation_account.name
@@ -68,7 +68,7 @@ module "automation_variable_string_sample" {
 }
 
 module "automation_runbook_sample_manual" {
-  source                    = "../../modules/automation_runbook"
+  source                    = "./modules/automation_runbook"
   name                      = var.automation_runbook_sample_name
   location                  = module.resource_group_automation.location
   resource_group_name       = module.resource_group_automation.name
@@ -83,7 +83,7 @@ module "automation_runbook_sample_manual" {
 
 ### Sample: Main Resources - Azure Functions
 module "resource_group_function" {
-  source   = "../../modules/resource_group"
+  source   = "./modules/resource_group"
   name     = var.function_rg_name
   location = var.function_rg_location
 }
@@ -97,7 +97,7 @@ output "resource_group_function_location" {
 }
 
 module "application_insights_function" {
-  source                        = "../../modules/application_insights"
+  source                        = "./modules/application_insights"
   name                          = var.function_app_insights_name
   resource_group_name           = module.resource_group_function.name
   location                      = module.resource_group_function.location
@@ -122,7 +122,7 @@ output "application_insights_function_instrumentation_key" {
 }
 
 module "storage_account_function" {
-  source                          = "../../modules/storage_account"
+  source                          = "./modules/storage_account"
   name                            = var.function_storage_account_name
   resource_group_name             = module.resource_group_function.name
   location                        = module.resource_group_function.location
@@ -157,7 +157,7 @@ output "storage_account_function_primary_table_endpoint" {
 }
 
 module "storage_container_function_hosts" {
-  source                = "../../modules/storage_container"
+  source                = "./modules/storage_container"
   name                  = var.function_storage_container_hosts_name
   storage_account_id    = module.storage_account_function.id
   container_access_type = var.function_storage_container_access_type
@@ -165,7 +165,7 @@ module "storage_container_function_hosts" {
 }
 
 module "storage_container_function_secrets" {
-  source                = "../../modules/storage_container"
+  source                = "./modules/storage_container"
   name                  = var.function_storage_container_secrets_name
   storage_account_id    = module.storage_account_function.id
   container_access_type = var.function_storage_container_access_type
@@ -173,7 +173,7 @@ module "storage_container_function_secrets" {
 }
 
 module "storage_container_function_app_packages" {
-  source                = "../../modules/storage_container"
+  source                = "./modules/storage_container"
   name                  = var.function_storage_container_app_packages_name
   storage_account_id    = module.storage_account_function.id
   container_access_type = var.function_storage_container_access_type
@@ -189,7 +189,7 @@ output "storage_container_function_app_packages_endpoint" {
 }
 
 module "service_plan_function" {
-  source              = "../../modules/service_plan"
+  source              = "./modules/service_plan"
   name                = var.function_service_plan_name
   location            = module.resource_group_function.location
   os_type             = var.function_service_plan_os_type
@@ -214,7 +214,7 @@ locals {
 }
 
 module "function_app_flex_consumption_sample" {
-  source                      = "../../modules/function_app_flex_consumption"
+  source                      = "./modules/function_app_flex_consumption"
   location                    = module.resource_group_function.location
   name                        = var.function_name
   resource_group_name         = module.resource_group_function.name
@@ -249,7 +249,7 @@ output "function_app_flex_consumption_system_assigned_managed_identity_principal
 
 ### Sample: Azure RBAC - Managed identities for Function App
 module "role_assignment_storage_blob_data_contributor_function_app" {
-  source                = "../../modules/role_assignment"
+  source                = "./modules/role_assignment"
   scope                 = module.storage_container_function_app_packages.id
   role_definition_name  = "Storage Blob Data Contributor"
   principal_id          = module.function_app_flex_consumption_sample.system_assigned_managed_identity_principal_id
@@ -257,7 +257,7 @@ module "role_assignment_storage_blob_data_contributor_function_app" {
 }
 
 module "role_assignment_monitoring_metrics_publisher_function_app" {
-  source                = "../../modules/role_assignment"
+  source                = "./modules/role_assignment"
   scope                 = module.application_insights_function.id
   role_definition_name  = "Monitoring Metrics Publisher"
   principal_id          = module.function_app_flex_consumption_sample.system_assigned_managed_identity_principal_id
@@ -265,7 +265,7 @@ module "role_assignment_monitoring_metrics_publisher_function_app" {
 }
 
 module "role_assignment_website_contributor_function_app" {
-  source                = "../../modules/role_assignment"
+  source                = "./modules/role_assignment"
   scope                 = module.function_app_flex_consumption_sample.id
   role_definition_name  = "Website Contributor"
   principal_id          = var.azure_deployment_principal_id
