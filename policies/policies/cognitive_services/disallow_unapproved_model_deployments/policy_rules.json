@@ -1,0 +1,35 @@
+{
+  "if": {
+    "anyOf": [
+      {
+        "allOf": [
+          {
+            "equals": "Microsoft.CognitiveServices/accounts/deployments",
+            "field": "type"
+          },
+          {
+            "not": {
+              "equals": "OpenAI",
+              "field": "Microsoft.CognitiveServices/accounts/deployments/model.format"
+            }
+          }
+        ]
+      },
+      {
+        "anyOf": [
+          {
+            "equals": "Microsoft.MachineLearningServices/workspaces/onlineEndpoints",
+            "field": "type"
+          },
+          {
+            "equals": "Microsoft.MachineLearningServices/workspaces/serverlessEndpoints",
+            "field": "type"
+          }
+        ]
+      }
+    ]
+  },
+  "then": {
+    "effect": "[parameters('effect')]"
+  }
+}

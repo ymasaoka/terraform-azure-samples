@@ -1,0 +1,11 @@
+{
+  "effect": {
+    "type": "string",
+    "allowedValues": [
+      "Audit",
+      "Deny",
+      "Disabled"
+    ],
+    "defaultValue": "Deny"
+  }
+}
