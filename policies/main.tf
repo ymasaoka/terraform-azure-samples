@@ -1,7 +1,7 @@
 locals {
   policy_definitions = {
     # Cognitive Services policies
-    disallow-unapproved-model-deployments = {
+    disallow_unapproved_model_deployments = {
       category     = "cognitive_services"
       name         = var.policy_name_deployments_permission_model_aoai
       display_name = var.policy_display_name_deployments_permission_model_aoai
