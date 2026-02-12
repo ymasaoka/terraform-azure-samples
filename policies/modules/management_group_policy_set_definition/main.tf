@@ -9,6 +9,7 @@ resource "azurerm_management_group_policy_set_definition" "this" {
     for_each = var.policy_definition_reference
     content {
       policy_definition_id = policy_definition_reference.value["policy_definition_id"]
+      reference_id         = try(policy_definition_reference.value["reference_id"], null)
     }
   }
   # Optional

@@ -49,8 +49,9 @@ module "management_group_policy_set_definition_guardrail" {
   description                 = var.initiative_description_guardrail
   metadata                    = templatefile("./initiatives/guardrail/initiative_metadata.json", {})
   policy_definition_reference = [
-    for m in values(module.policy_definitions) : {
+    for k, m in values(module.policy_definitions) : {
       policy_definition_id = try(m.policy_definition_id, m.id)
+      reference_id         = k
     }
   ]
 }

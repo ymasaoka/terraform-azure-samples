@@ -23,10 +23,10 @@ variable "policy_definition_reference" {
     # Required
     policy_definition_id = string
     # Optional
-    # parameter_values = string
-    # policy_group_names = list(string)
-    # reference_id = string
-    # version = string
+    parameter_values = optional(string)
+    policy_group_names = optional(list(string))
+    reference_id = optional(string)
+    version = optional(string)
   }))
   description = "The reference ID of the policy definition."
 }
